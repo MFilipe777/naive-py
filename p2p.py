@@ -1,20 +1,10 @@
-import asyncio
-import websockets
 from enum import Enum
 from node import Node
 from blockchain import *
+from node import *
+from node_collections import *
 
 sockets = []
-
-class Message_Type(Enum):
-    QUERY_LATEST = 0
-    QUERY_ALL = 1
-    RESPONSE_BLOCKCHAIN = 2
-
-class Message:
-    def __init__(self):
-        self.type = Message_Type()
-        self.data = None
 
 def init_p2p_server():
     def __init__(self, p2p_port, p2p_host):

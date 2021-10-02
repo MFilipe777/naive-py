@@ -1,9 +1,5 @@
-import asyncio
-import websockets
-import json
 from flask import Flask, request
 from flask.json import jsonify
-import json
 from blockchain import *
 from p2p import *
 
@@ -21,7 +17,7 @@ def http_server(http_port, server : Node):
     
     @app.route("/peers", methods = ["GET"])
     def get_peers():
-        return  get_sockets()
+        return  jsonify(get_sockets())
     
     @app.route("/add_peer")
     def add_peer():
