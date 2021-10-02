@@ -19,9 +19,9 @@ def http_server(http_port, server : Node):
     def get_peers():
         return  jsonify(get_sockets())
     
-    @app.route("/add_peer")
+    @app.route("/add_peer", methods = ["POST"])
     def add_peer():
-        host, port = list(map(int, request.json.peer.split(":")))
+        host, port = request.form["host"], request.form["port"]
         server.connect_with_node(host, port, reconnect=True)
 
     app.run()

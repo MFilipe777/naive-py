@@ -1,8 +1,5 @@
-from enum import Enum
-from node import Node
 from blockchain import *
-from node import *
-from node_collections import *
+from p2pnetwork.node import Node
 
 sockets = []
 

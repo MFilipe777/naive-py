@@ -3,20 +3,28 @@ from time import time
 import json 
 
 class Block:
-    def __init__(self, index, hash, previous_hash, timestamp, data):
+    def __init__(self, index, hash, previous_hash, timestamp, data, difficulty, nonce):
         self.index = index
-
         self.hash = hash
         self.previous_hash = previous_hash
     
-        self.data = data
         self.timestamp = timestamp
+        self.data = data
+
+        self.difficulty = difficulty
+        self.nonce = nonce
 
 genesis_block = Block(0, "93fb2fe35fdee5dd9363cf3efe72481380e416f4509e8fb67b58758a872f6b63", None, 1465154705, "hi")
 blockchain = [genesis_block]
 
+BLOCK_GENERATION_INTERVAL      = 10  # seconds
+DIFFICULTY_ADJUSTMENT_INTERVAL = 10  # in blocks
+
 def calculate_hash(index, previous_hash, timestamp, data):
     return sha256(''.join(list(map(str,[index, previous_hash, timestamp, data]))).encode("utf-8")).hexdigest()
+
+def add_block(block):
+    blockchain.append(block)
 
 def generate_next_block(data):
     previous_block = get_latest_block()
@@ -29,9 +37,6 @@ def generate_next_block(data):
     next_block = Block(next_index, next_hash, previous_block.hash, next_timestamp, data)
     add_block(next_block)
     return next_block
-
-def add_block(block):
-    blockchain.append(block)
 
 def get_latest_block():
     return blockchain[-1]
