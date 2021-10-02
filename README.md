@@ -21,7 +21,7 @@ A python implementation of [naivecoin](https://github.com/lhartikk/naivecoin/tre
 |---| --- |
 | data | < data : str > |  
   
-- `/peers` - Returns a list of every connected peer. - GET
+- `/peers` - Returns a list of every peer connected to this node. - GET
 - `/add_peer` - Connects with peer; receives host and port of peer as body. - POST  
 
 | Name |     Content     |  
